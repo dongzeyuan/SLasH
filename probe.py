@@ -3,7 +3,7 @@
 # @Author  : DongFJ
 # @Email   : sjsgydfj@163.com
 # @File    : probe.py
-# @Software: VS Code
+# @Software: VS Code 1.26.1
 '''
 Description : 分析输入的CSV文件，图表呈现
 主要内容：
@@ -43,7 +43,8 @@ def getData(fileName):
 
 
 def calcData(inputFile, oriThick):
-    '''输入文件名，返回时间序列，metal loss序列'''
+    '''输入文件名，返回时间序列，metal loss序列
+    其中metal loss单位为mm'''
     timestamp = []
     resRatio = []
     metalloss = []
@@ -62,5 +63,5 @@ def calcData(inputFile, oriThick):
 
 
 if __name__ == "__main__":
-    pprint.pprint(getData('D:\code\SLasH\ER-0001.csv'))
-    pprint.pprint(calcData('D:\code\SLasH\ER-0001.csv', 0.508))
+    pprint.pprint(getData('E:\Python\SLasH\ER-0001.csv'))
+    pprint.pprint(calcData('E:\Python\SLasH\ER-0001.csv', 0.508))
