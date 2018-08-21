@@ -15,6 +15,7 @@ CSV文件格式如上所示
 '''
 from datetime import datetime
 import pprint
+import pylab
 
 
 def getData(fileName):
@@ -35,7 +36,8 @@ def getData(fileName):
     dataFile.readline()  # ignore header
     for line in dataFile:
         li1, li2, li3, li4, li5, li6, li7, li8 = line.split(',')
-        times.append(str(li2 + '-' + li3 + '-' + li4 + ' ' + li5 + ':' + li6+':'+'0'))
+        times.append(str(li2 + '-' + li3 + '-' + li4 +
+                         ' ' + li5 + ':' + li6 + ':' + '0'))
         resElements.append(float(li7))
         resRefers.append(float(li8))
     dataFile.close()
@@ -51,7 +53,6 @@ def calcData(inputFile, oriThick):
     times, resElements, resRefers = getData(inputFile)
     for time_str in times:
         time = datetime.strptime(time_str, '%Y-%m-%d %H:%M:%S')
-        print(type(time))
         timestamp.append(time)
     for i in range(len(resElements)):
         ratio = resRefers[i] / resElements[i]
@@ -62,5 +63,19 @@ def calcData(inputFile, oriThick):
     return (timestamp, metalloss)
 
 
+def plotData(inputFile, oriThick):
+    timestamp, metalloss = calcData(inputFile, oriThick)
+    timestamp = pylab.array(timestamp)
+    metalloss = pylab.array(metalloss)
+    # pylab.date2num(date),将date 类型转换为pylab的时间类型，
+    # 使用pylab.plot_date()画图
+    pylab.plot_date(pylab.date2num(timestamp), metalloss, 'bo',
+                    label='Metal Loss(mm)')
+    pylab.title('Metal Loss to Time')
+    pylab.xlabel('Time')
+    pylab.ylabel('Metal loss(mm)')
+    pylab.show()
+
+
 if __name__ == "__main__":
-    pprint.pprint(calcData('E:\Python\SLasH\ER-0001.csv', 0.508))
+    plotData('D:\code\SLasH\ER-0001.csv', 0.508)
