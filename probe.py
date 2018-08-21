@@ -35,7 +35,7 @@ def getData(fileName):
     dataFile.readline()  # ignore header
     for line in dataFile:
         li1, li2, li3, li4, li5, li6, li7, li8 = line.split(',')
-        times.append(str(li2 + '-' + li3 + '-' + li4 + '-' + li5 + '-' + li6))
+        times.append(str(li2 + '-' + li3 + '-' + li4 + ' ' + li5 + ':' + li6+':'+'0'))
         resElements.append(float(li7))
         resRefers.append(float(li8))
     dataFile.close()
@@ -50,8 +50,8 @@ def calcData(inputFile, oriThick):
     metalloss = []
     times, resElements, resRefers = getData(inputFile)
     for time_str in times:
-        time = datetime.strptime(time_str, '%Y-%m-%d-%H-%M')
-        time.strftime('%Y-%m-%d-%H-%M')
+        time = datetime.strptime(time_str, '%Y-%m-%d %H:%M:%S')
+        print(type(time))
         timestamp.append(time)
     for i in range(len(resElements)):
         ratio = resRefers[i] / resElements[i]
@@ -63,5 +63,4 @@ def calcData(inputFile, oriThick):
 
 
 if __name__ == "__main__":
-    pprint.pprint(getData('E:\Python\SLasH\ER-0001.csv'))
     pprint.pprint(calcData('E:\Python\SLasH\ER-0001.csv', 0.508))
