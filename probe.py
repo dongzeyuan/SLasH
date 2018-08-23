@@ -13,6 +13,8 @@ Description : 分析输入的CSV文件，图表呈现
 2,2017,2,15,10,0,49900,50000
 CSV文件格式如上所示
 现在这个程序运行速度很慢，不知道什么原因
+无论如何每天也得保持更新
+
 '''
 from datetime import datetime
 import pprint
