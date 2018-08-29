@@ -19,6 +19,7 @@ Ti8后遗症太强了
 from datetime import datetime
 import pprint
 import pylab
+import sqlite3
 
 
 def getData(fileName):
@@ -78,6 +79,18 @@ def plotData(inputFile, oriThick):
     pylab.xlabel('Time')
     pylab.ylabel('Metal loss(mm)')
     pylab.show()
+
+
+def creatDB():
+    conn = sqlite3.connect('Probe.db')
+    print('Open database successfully')
+    c = conn.cursor()
+    c.execute('''CREATE TABLE DATA
+    (ID INT PRIMARY KEY NOT NULL,
+    TIME
+    RESELM
+    RESREF
+    METALLOSS))
 
 
 if __name__ == "__main__":
