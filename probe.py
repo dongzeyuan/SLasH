@@ -82,16 +82,17 @@ def plotData(inputFile, oriThick):
 
 
 def creatDB():
-    conn = sqlite3.connect('Probe.db')
+    conn = sqlite3.connect('D:\code\SLasH\Probe.db')
     print('Open database successfully')
     c = conn.cursor()
     c.execute('''CREATE TABLE DATA
-    (ID INT PRIMARY KEY NOT NULL,
-    TIME
-    RESELM
-    RESREF
-    METALLOSS))
+    (ID integer PRIMARY KEY autoincrement,
+    TIME timestamp
+    RESELM integer
+    RESREF integer
+    METALLOSS float)''')
 
 
 if __name__ == "__main__":
     plotData('D:\code\SLasH\ER-0001.csv', 0.508)
+    creatDB()
