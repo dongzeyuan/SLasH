@@ -1,33 +1,20 @@
-class Monster(object):
+class MonPl(object):
     def __init__(self, name, hp):
         self.name = name
         self.hp = hp
         self.ap = 1
+        print('{0} has joinned the battle'.format(self.name))
 
     def getstatus(self):
-        if self.hp == 0:
-            print('{0} is defeated'.format(self.name))
-        else:
-            print('{0} is alive'.format(self.name))
-
-
-class Player(object):
-    def __init__(self, name, hp):
-        self.name = name
-        self.hp = hp
-        self.ap = 2
-
-    def getstatus(self):
-        if self.hp == 0:
-            print('{0} is defeated'.format(self.name))
-        else:
-            print('{0} is alive'.format(self.name))
+        return self.hp
 
 
 def fight(player, monster):
-    while true:
         monster.hp = monster.hp - player.ap
-        monster.getstatus()
+        print('The monster has {0} hp left'.format(monster.getstatus()))
 
 
 if __name__ == "__main__":
+    player = MonPl('V',100)
+    monster = MonPl('GW', 100)
+    fight(player, monster)
