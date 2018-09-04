@@ -1,3 +1,5 @@
+# 还是需要再看几遍狗书
+
 import time
 
 class MonPl(object):
