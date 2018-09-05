@@ -15,12 +15,16 @@ class MonPl(object):
 
 
 def fight(player, monster):
-    while monster.getstatus() > 0:
-        monster.hp = monster.hp - player.ap
-        print('The monster has {0} hp left'.format(monster.getstatus()))
-        time.sleep(player.attsp)
-        player.hp = player.hp - monster.ap
-        print('The player has {0} hp left'.format(player.getstatus()))
+    who_round = 'player'
+    while monster.getstatus() > 0 and player.getstatus() > 0:
+        if who_round == 'player':
+            monster.hp = monster.hp - player.ap
+            print('The monster has {0} hp left'.format(monster.getstatus()))
+            who_round = 'monster'
+        else:
+            player.hp = player.hp - monster.ap
+            print('The player has {0} hp left'.format(player.getstatus()))
+            who_round = 'player'
     else:
         print('The monster has been defeated')
 
