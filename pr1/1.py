@@ -1,6 +1,8 @@
 # 还是需要再看几遍狗书
 
 import time
+import random
+
 
 class MonPl(object):
     def __init__(self, name, hp, ap, attsp):
@@ -12,6 +14,17 @@ class MonPl(object):
 
     def getstatus(self):
         return self.hp
+
+
+class Item(object):
+    def __init__(self, itype, rate):
+        self.itype = itype
+        self.rate = rate
+
+    def droprate(self):
+        self.rate = random.choice(0, 1)
+        if self.rate > 0.5:
+            return self.itype
 
 
 def fight(player, monster):
@@ -27,6 +40,8 @@ def fight(player, monster):
             who_round = 'player'
     else:
         print('The monster has been defeated')
+
+def drop(m)
 
 
 if __name__ == "__main__":
